@@ -1,0 +1,156 @@
+html { overflow-y: auto;overflow-x: hidden; }
+body{width:1536px;}
+.header img{
+	height: 74px;
+	width: 100%;
+}
+.header ul{
+	height: 40px;
+	width:  100%;
+	background: #575757;
+}
+.header ul li{
+	list-style: none;
+ float: left;
+ color: #fff;
+ line-height: 39px;
+ padding-left: 20px;
+ padding-right: 20px;
+ font-size: 14px;
+ cursor: pointer;
+}
+.header ul li:hover{
+	background: #192E32;
+	height: 40px;
+}
+.header ul li:nth-child(1){
+	margin-left: 20px;
+	padding-left: 10px;
+}
+.header ul li:nth-child(13),.header ul li:nth-child(14),.header ul li:nth-child(15),.header ul li:nth-child(16),.header ul li:nth-child(17),.header ul li:nth-child(18),.header ul li:nth-child(19){
+	font-size: 12px;
+}
+.header ul li span{
+	font-size: 10px;
+	display: inline;
+	background: #ff3f3f;
+	padding-left: 5px;
+	padding-right: 7px;
+	border-radius: 10px;
+	text-align: center;
+}
+.header ul b{
+	font-weight: 100;
+	float: left;
+	color: #fff;
+	opacity: 0.5;
+	line-height: 40px;
+}
+
+
+
+.aside{
+	float: left;
+	width: 180px;
+	height: 578px;
+	background: #192E32;
+	color: #fff;
+}
+.aside>p{height: 40px;line-height: 40px;padding-left: 40px;}
+.aside>ul{
+	height: 100%;
+	width: 100%;
+	background: #575757;
+	max-height: 580px;  
+  	overflow-y: auto;  
+}
+.aside>ul>li{
+	line-height: 34px;
+	border-bottom: 1px solid #d7d7d7;
+	cursor: pointer;
+}
+.aside>ul>li:hover{
+	background: #454545;
+}
+
+.aside>ul>li i{
+	padding-left: 10px;
+}
+.aside>ul>li p{
+	display: inline-block;
+	padding-right: 10px;
+}
+.aside>ul>li ul{display: none;}
+.aside ul li ul li{
+	cursor: pointer;
+	padding-left: 30px;
+	height: 30px;
+	font-size: 12px;
+}
+.aside ul li ul li:hover{
+	background-color: #575757;
+}
+
+.content{
+	float: left;
+	height: 616px;
+	width: 1354px;
+  	overflow-y: auto;  
+  	background: url(../images/body_bj.jpg);
+}
+.admin_1,.admin_2{padding-left: 20px;}
+.admin_1 h4,.admin_1 h5,.admin_2 h4,.admin_2 h5{
+	font-size: 20px;
+	margin-top: 30px;
+}
+.admin_1>span{display: block;width: 98%;
+	border-bottom: 1px solid #666;
+	padding-top: 20px;
+}
+.admin_1 h5{color: #454545;font-weight: 500;font-size: 16px;}
+.admin_1 h5 span{color: #FF3F3F;}
+.admin_1 h5 a{color: #454545;}
+.admin_1 img{width: 1300px;padding-top: 50px;}
+
+
+.img5{width: 80%;margin:30px 0;margin-left: 30px;}
+
+.admin_2 .head,.admin_3 .head{width: 1270px;display: flex;  height: 100px;border-bottom: 1px solid #ccc;margin-bottom: 30px;padding-left: 30px;}
+.admin_2 .head h4,.admin_3 .head h4{margin-right: 750px;margin-top: 50px;display: inline-block;}
+.admin_2 .head button,.admin_3 .head button{height: 30px;width: 100px;margin: 50px;background-color: #FC7878;border: none;color: #fff;}
+.admin_2 ul{
+	width: 800px;
+	margin:0 auto;
+}
+.admin_2 img{display: block;width: 100%;padding: 20px 0;}
+.admin_2 ul li{line-height: 40px;height: 40px;}
+.admin_2 ul li p{display: inline-block;width: 150px;text-align: right;padding-right: 20px;}
+.admin_2 ul li p span{margin-right: 3px; display: inline-block;height: 20px;width: 20px;border-radius: 50%;background-color: limegreen;text-align: center;line-height: 20px;}
+.admin_2 ul li input{width: 200px;height: 26px;text-align: center;outline: none;}
+.admin_2 ul li button{margin:0 10px;height: 20px;}
+.admin_2 ul>button{width: 100px;margin-left: 90px;height: 30px;margin-top: 40px;background-color: #ff3f3f;border: none;color: #fff;}
+
+
+.admin_3 .form{display: flex; width: 1300px;background-color: #f3f3f3;border: 1px solid #999;font-size: 16px;}
+.admin_3 .form li{height: 50px;line-height: 50px;margin-left: 20px;}
+.admin_3 .form li input{margin: 0 20px;}
+.admin_3 .form li select{height: 20px;width: 130px;text-align: center;}
+.admin_3 .form li button{background-color: #FC7878;border: none;width: 60px;color: #fff;}
+.admin_3 table{height: auto;margin-top: 40px;border: none;}
+.admin_3 table tr{display: block;background-color: #fff;height: 40px;line-height: 40px;border-bottom: 1px solid #999;width: 1306px;}
+.admin_3 table tr:first-child{border-top: 1px solid #999}
+.admin_3 table tr td{display: inline-block;width: 95px;text-align: center;border: none;border-right: 1px solid #999;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.admin_3 table tr td:first-child{border-left: 1px solid #999;}
+.admin_3 table tr td .iconfont{color: #FF3F3F}
+.admin_3>p{ padding-left: 481px;
+    width: 870px;
+    background-color: #f5f5f5;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #666;
+    margin-top: 50px;}
+.admin_3>p>input{width: 40px;}
+.admin_3>li{margin-top: 20px;}
+.admin_3>li>select{width: 100px;height: 22px;}
+.admin_3>li>button{border: none;height: 22px; width: 70px;color: #fff;background-color: #FF3F3F;margin-left: 30px;}

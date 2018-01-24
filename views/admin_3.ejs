@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div class="admin_3">
+			<div class="head">
+				<h4>ECHOP管理中心</h4>
+				<button class="button2">添加新商品</button>
+			</div>
+			<div class="form">
+				<li><i class="iconfont icon-sousuo"></i></li>
+				<li>
+					<select name="">
+						<option value="0">所有分类</option>
+						<option value="1">1</option>
+					</select>
+				</li>
+				<li>
+					<select name="">
+						<option value="0">所有分类</option>
+					</select>
+				</li>
+				<li>
+					<select name="">
+						<option value="0">所有分类</option>
+					</select>
+				</li>
+				<li>
+					<select name="">
+						<option value="0">所有分类</option>
+					</select>
+				</li>
+				<li>关键字<input type="text" /><button>搜索</button></li>
+			</div>
+
+			<table border="" cellspacing="1" cellpadding="3" class="table">
+				<tr class="goodstr">
+					<td>编号</td>
+					<td>商品名称</td>
+					<td>货号</td>
+					<td>品牌</td>
+					<td>价格</td>
+					<td>上架</td>
+					<td>精品</td>
+					<td>新品</td>
+					<td>热销</td>
+					<td>推荐排序</td>
+					<td>库存</td>
+					<td>虚拟销量</td>
+					<td>操作</td>
+				</tr>
+
+			</table>
+			<p>总计<span class="zindex">5</span>个记录&nbsp;&nbsp;分为<span class="numberPage">1</span>页&nbsp;&nbsp;当前第<span class="nowPage">1</span>页，每页<input type="text" value="5" />&nbsp;&nbsp;第1页&nbsp;&nbsp;<a href="javascript:;" class="beforePage">上一页</a>&nbsp;&nbsp;<a href="javascript:;" class="nextPage">下一页</a>&nbsp;&nbsp;最末页
+				<select name="" id="">
+					<option value="0">1</option>
+					<option value="0">2</option>
+				</select>
+			</p>
+			<li>
+				<select name="">
+					<option value="">请选择</option>
+				</select>
+				<button>确定</button>
+			</li>
+		</div>
+
+		<img class="img5" src="/images/toulan5.png" />
+
+	</body>
+<script type="text/javascript">
+	//点击跳转添加新商品页面
+	var oNextPage = document.getElementsByClassName("nextPage")[0]
+	var oBeforePage = document.getElementsByClassName("beforePage")[0]
+	var button2 = document.getElementsByClassName("button2")[1]
+	var PageIndex = 0
+	var oZindex = document.getElementsByClassName("zindex")[0]
+	var oNumberPage = document.getElementsByClassName("numberPage")[0]
+	var oNowPage = document.getElementsByClassName("nowPage")[0]
+	button2.onclick = function() {
+		$(".content").load("admin_2")
+	}
+
+	
+	
+	
+	var index_page = 1
+	var index = 0;
+	$.ajax({
+		type:"get",
+		url:"/ListPage",
+		async:true,
+		data:{
+			PageIndex:PageIndex
+		},
+		success:function(res){
+			var resPage = parseInt(res.pageindex)
+			var res = res.items
+			console.log(res)
+			oNumberPage.innerHTML = Math.ceil(resPage/5)
+			oNowPage.innerHTML = index_page
+			
+			
+			oZindex.innerHTML = resPage
+			for(var i=0;i<res.length;i++){
+				var goods_name = res[i].goods_name;
+				var goods_id = res[i].goods_id;
+				var brand = res[i].brand;
+				var price = res[i].price;
+				var price_xiao = res[i].price_xiao
+				var obj = `<tr>
+								<td>
+									<input type="checkbox" name="checkboxes[]" value="136" style="margin-left: -2px;margin-right: 3px;" />${index++}
+								</td>
+								<td class="first-cell" style="color:red;"><span>${goods_name}</span></td>
+								<td>${goods_id}</td>
+								<td>${brand}</td>
+								<td>${price}</td>
+								<td><i class="iconfont icon-right-1"></i></td>
+								<td><i class="iconfont icon-right-1"></td>
+								<td><i class="iconfont icon-error-1"></td>
+								<td><i class="iconfont icon-error-1"></td>
+								<td>002</td>
+								<td>999</td>
+								<td>${price_xiao}</td>
+								<td><i class="iconfont icon-shanchu1 shanchu"></td>
+							</tr>`			
+			
+				$(obj).appendTo($(".table"))
+			}
+		}
+})
+	setTimeout(function(){
+		var shanchu = document.getElementsByClassName("shanchu");
+		for(let q = 0;q<shanchu.length;q++){
+		shanchu[q].onclick = function(){
+		var thisname = this.parentNode.parentNode.parentNode
+		var that = this
+		var goods_name =  shanchu[q].parentNode.parentNode.firstElementChild.nextElementSibling.firstElementChild.innerHTML;
+		$.ajax({
+			type:"get",
+			url:"/shanchu",
+			async:true,
+			data:{
+				goods_name:goods_name
+			},
+			success:function(res){
+				if(res.code == 1){
+					thisname.removeChild(that.parentNode.parentNode)
+				}
+			}
+		});
+	}}
+	},1000)
+	
+	
+	
+	setTimeout(function(){
+	oNextPage.onclick = function(){	
+		PageIndex+=5;
+		var index = 0;
+		index_page++
+	$.ajax({
+		type:"get",
+		url:"/ListPage",
+		async:true,
+		data:{
+			PageIndex:PageIndex
+		},
+		success:function(res){
+			var resPage = parseInt(res.pageindex)
+			var res = res.items
+			console.log(res)
+			oNumberPage.innerHTML = Math.ceil(resPage/5)
+			oNowPage.innerHTML = index_page
+			$(".goodstr").nextAll().remove();
+			console.log(res)
+			for(var i=0;i<res.length;i++){
+				var goods_name = res[i].goods_name;
+				var goods_id = res[i].goods_id;
+				var brand = res[i].brand;
+				var price = res[i].price;
+				var price_xiao = res[i].price_xiao
+				var obj = `<tr>
+								<td>
+									<input type="checkbox" name="checkboxes[]" value="136" style="margin-left: -2px;margin-right: 3px;" />${index++}
+								</td>
+								<td class="first-cell" style="color:red;"><span>${goods_name}</span></td>
+								<td>${goods_id}</td>
+								<td>${brand}</td>
+								<td>${price}</td>
+								<td><i class="iconfont icon-right-1"></i></td>
+								<td><i class="iconfont icon-right-1"></td>
+								<td><i class="iconfont icon-error-1"></td>
+								<td><i class="iconfont icon-error-1"></td>
+								<td>002</td>
+								<td>999</td>
+								<td>${price_xiao}</td>
+								<td><i class="iconfont icon-shanchu1 shanchu"></td>
+							</tr>`			
+			
+				$(obj).appendTo($(".table"))
+			}
+		}
+})
+	}
+
+		
+	},2000)
+
+
+
+
+	setTimeout(function(){
+		oBeforePage.onclick = function(){
+		PageIndex-=5;
+		var index = 0;
+		index_page--
+	$.ajax({
+		type:"get",
+		url:"/ListPage",
+		async:true,
+		data:{
+			PageIndex:PageIndex
+		},
+		success:function(res){
+			var resPage = parseInt(res.pageindex)
+			var res = res.items
+			console.log(res)
+			oNumberPage.innerHTML = Math.ceil(resPage/5)
+			oNowPage.innerHTML = index_page
+			$(".goodstr").nextAll().remove();
+			console.log(res)
+			for(var i=0;i<res.length;i++){
+				var goods_name = res[i].goods_name;
+				var goods_id = res[i].goods_id;
+				var brand = res[i].brand;
+				var price = res[i].price;
+				var price_xiao = res[i].price_xiao
+				var obj = `<tr>
+								<td>
+									<input type="checkbox" name="checkboxes[]" value="136" style="margin-left: -2px;margin-right: 3px;" />${index++}
+								</td>
+								<td class="first-cell" style="color:red;"><span>${goods_name}</span></td>
+								<td>${goods_id}</td>
+								<td>${brand}</td>
+								<td>${price}</td>
+								<td><i class="iconfont icon-right-1"></i></td>
+								<td><i class="iconfont icon-right-1"></td>
+								<td><i class="iconfont icon-error-1"></td>
+								<td><i class="iconfont icon-error-1"></td>
+								<td>002</td>
+								<td>999</td>
+								<td>${price_xiao}</td>
+								<td><i class="iconfont icon-shanchu1 shanchu"></td>
+							</tr>`			
+			
+				$(obj).appendTo($(".table"))
+			}
+		}
+})
+	}
+
+		
+	},2000)
+
+</script>
+
+</html>
+
+<script type="text/javascript" src="/javascripts/admin.js"></script>
+<script type="text/javascript" src="/javascripts/jquery-1.11.3.js"></script>
+

@@ -1,0 +1,11 @@
+*{margin: 0;padding: 0;}
+
+img{display: block;}
+
+a {
+  color: #00B7FF;
+  text-decoration: none;
+}
+li{
+	list-style: none;
+}

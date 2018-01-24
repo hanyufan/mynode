@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/admin.css' />
+	</head>
+		
+	<body>
+		<div class="admin_2">
+  			<div class="head">
+  				<h4>ECHOP管理中心</h4>
+  				<button class="button1">+商品列表</button>
+  			</div>
+  			<ul>
+  				<li><p>商品名称</p><input type="text" class="goods_name" placeholder="自拟"/></li>
+  				<li><p><span>?</span>商品货号</p><input type="text" value="0" class="goods_id"/></li>
+  				<li><p>商品品牌</p><input type="text" value="莫辞" class="brand"/></li>
+  				<li><p>本店售价</p><input type="text" value="300" class="price" /></li>
+  				<li><p><span>?</span>会员价格</p><input type="text" value="200" class="price_vip"/></li>
+  				<li><p><span>?</span>商品优惠价格</p><input type="text" value="100" class="price_youhui"/></li>
+  				<li><p>市场售价</p><input type="text" class="price_shichang" value="350" /></li>
+  				<li><p>虚拟销量</p><input type="text" value="200" class="price_xiao"/></li>
+  				<li><p><span>?</span>赠送消费积分数</p><input type="text" /></li>
+  				<li><p><span>?</span>赠送等级积分数</p><input type="text" /></li>
+  				<li><p><span>?</span>积分购买金额</p><input type="text" /></li>
+  				<li><p>上传商品图片</p><input type="file" value="选择文件" class="goods_img" /></li>
+  				<button onclick="abcd()">确定</button>
+  				<button>重置</button>
+  			</ul>
+  		</div>	
+  		
+  		<img class ="img5" src="/images/toulan5.png"/>
+  		
+	</body>
+</html>
+<script type="text/javascript" src="/javascripts/jquery-1.11.3.js"></script>
+
+<script type="text/javascript">
+		
+function abcd(){
+//	alert("dgsf")
+	var form = new FormData();
+
+		form.append("goods_name",document.getElementsByClassName("goods_name")[0].value)
+		form.append("goods_id",document.getElementsByClassName("goods_id")[0].value)
+		form.append("brand",document.getElementsByClassName("brand")[0].value)
+		form.append("price",document.getElementsByClassName("price")[0].value)
+		form.append("price_vip",document.getElementsByClassName("price_vip")[0].value)
+		form.append("price_youhui",document.getElementsByClassName("price_youhui")[0].value)
+		form.append("price_shichang",document.getElementsByClassName("price_shichang")[0].value)
+		form.append("price_xiao",document.getElementsByClassName("price_xiao")[0].value)
+		form.append("goods_img",document.getElementsByClassName("goods_img")[0].files[0])
+		
+	var xhr = new XMLHttpRequest;
+	xhr.open("POST","/api/addgoodsAction")
+	xhr.send(form)
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState ==4 && xhr.status==200 ){
+			var res = JSON.parse(xhr.responseText)
+			alert(res.message)
+		}
+	}
+}
+
+
+</script>
+<script type="text/javascript" src="/javascripts/admin.js"></script>

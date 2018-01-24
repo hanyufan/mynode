@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+    <link rel='stylesheet' href='//at.alicdn.com/t/font_491734_e9h2rl4d9uow29.css'/>
+  </head>
+  <body>
+    <div id="">
+    	<ul>
+	    	<li>
+	    		<i class="iconfont icon-touxiang"></i>
+	    		<input type="text" name="username" id="username" value="admin"  placeholder="用户名"/>
+	    	</li>
+	    	<li>
+	    		<i class="iconfont icon-suo"></i>
+	    		<input type="password" name="password" id="password" value="admin"  placeholder="密码"/>
+	    	</li>
+	    	
+	    	
+	    	<button type="button" onclick="loginfun()">登陆</button>
+	    	<input type="checkbox" name="" id="" value="" />
+	    	<p>保存登陆信息</p>
+	    	<a href="#">忘记密码</a>
+	    	<a href="/">去店铺首页>></a>
+	    </ul>
+	    
+    </div>
+  </body>
+</html>
+<script type="text/javascript" src="/javascripts/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+	function loginfun(){
+  		$.ajax({
+  			url:"/loginActive",
+			type:"post",
+  			data:{
+  				username:$("#username").val(),
+  				password:$("#password").val()
+  			},
+  			success:function(res){
+  				if(res.code == 1 ){
+  					alert(res.message)
+  					location.href = "/admin"
+  				}else{
+  					alert(res.message)
+  				}
+  			}
+  		})
+  	}
+</script>
